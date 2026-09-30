@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+  Design tokens. Colours come from the AISR seal: navy, gold, and a warm
+  newsprint white. Two colours carry the page (paper + ink); navy and gold
+  are accents. Radii are binary: 0 everywhere, fully round for avatars/pills.
+*/
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: #f7f3ea;
+  --color-paper-2: #eee7d7;
+  --color-cream: #fbf9f3;
+  --color-ink: #141a33;
+  --color-ink-soft: #545a70;
+  --color-rule: #d5cbb4;
+  --color-navy: #29326b;
+  --color-navy-deep: #161c42;
+  --color-gold: #bb932b;
+  --color-gold-soft: #dcc38a;
+
+  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-franklin), "Franklin Gothic Medium", "Arial Narrow", sans-serif;
+
+  --radius-pill: 999px;
+  --container-page: 84rem;
+  --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-optical-sizing: auto;
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/*
+  No-FOUC contract for GSAP. The root layout adds `motion` to <html> before
+  paint when reduced motion is off, so [data-reveal] elements are hidden until
+  hydration. On mount, the component that animates an element sets its
+  initial state inline (e.g. gsap.from with autoAlpha, or gsap.set visibility)
+  and then animates it. If the app never hydrates within 4s, the inline script
+  adds `motion-fallback`, which shows everything.
+*/
+html.motion [data-reveal] {
+  visibility: hidden;
+}
+html.motion-fallback [data-reveal] {
+  visibility: visible !important;
 }

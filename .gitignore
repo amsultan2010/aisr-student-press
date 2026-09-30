@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local research and orchestration briefs
+/.research/
+/.briefs/
+!.env.example
