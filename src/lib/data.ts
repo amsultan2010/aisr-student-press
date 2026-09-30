@@ -263,3 +263,26 @@ export async function getSitemapEntries() {
     tags: tags.data ?? [],
   };
 }
+
+// Real published-article counts, in total and per section (homepage count-ups).
+export async function getArticleCounts() {
+  const { data } = await publicClient().from("articles").select("section:sections!inner(slug)");
+  const rows = (data as unknown as { section: { slug: string } }[] | null) ?? [];
+  const bySection: Record<string, number> = {};
+  for (const row of rows) bySection[row.section.slug] = (bySection[row.section.slug] ?? 0) + 1;
+  return { total: rows.length, bySection };
+}
+
+// Tags for a set of articles, keyed by article id (section front filters).
+export async function getArticleTags(articleIds: string[]) {
+  const out: Record<string, { slug: string; name: string }[]> = {};
+  if (!articleIds.length) return out;
+  const { data } = await publicClient()
+    .from("article_tags")
+    .select("article_id, tags(slug, name)")
+    .in("article_id", articleIds);
+  for (const row of (data as unknown as { article_id: string; tags: { slug: string; name: string } | null }[] | null) ?? []) {
+    if (row.tags) (out[row.article_id] ??= []).push(row.tags);
+  }
+  return out;
+}

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Libre_Franklin } from "next/font/google";
+import Script from "next/script";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -39,10 +40,12 @@ const motionBoot = `(function(){var d=document.documentElement;if(!matchMedia('(
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${newsreader.variable} ${franklin.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: motionBoot }} />
-      </head>
-      <body>{children}</body>
+      <body>
+        <Script id="motion-boot" strategy="beforeInteractive">
+          {motionBoot}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
