@@ -93,7 +93,7 @@ export function StaffForm({ initial, articleCount = 0 }: { initial: StaffInput; 
             <label htmlFor="s-slug" className={field.label}>
               Author page address
             </label>
-            <div className="mt-1.5 flex items-stretch border border-rule bg-cream font-sans text-[15px] focus-within:border-navy">
+            <div className="mt-1.5 flex items-stretch border border-rule bg-cream font-sans text-[16px] md:text-[15px] focus-within:border-navy">
               <span className="flex items-center border-r border-rule bg-paper-2 px-3 text-ink-soft">/author/</span>
               <input
                 id="s-slug"

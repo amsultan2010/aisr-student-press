@@ -211,7 +211,7 @@ export function ArticleEditor({
             <label htmlFor="slug" className={field.label}>
               Web address
             </label>
-            <div className="mt-1.5 flex items-stretch border border-rule bg-cream font-sans text-[15px] focus-within:border-navy">
+            <div className="mt-1.5 flex items-stretch border border-rule bg-cream font-sans text-[16px] md:text-[15px] focus-within:border-navy">
               <span className="hidden items-center border-r border-rule bg-paper-2 px-3 text-ink-soft sm:flex">
                 /{sections.find((s) => s.id === form.section_id)?.slug ?? "section"}/
               </span>

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { SITE } from "@/lib/site";
 import { gsap, SplitText, D, E, MQ, useGSAP } from "@/lib/motion";
+import { BuiltByLink } from "./BuiltBy";
 import { Dateline } from "./Dateline";
 import { InstagramIcon, SearchIcon } from "./icons";
 
@@ -55,8 +56,8 @@ export function Masthead({ dateline }: { dateline: string }) {
 
   return (
     <header ref={ref} className="relative bg-paper">
-      <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-3 font-sans text-[11px] text-ink-soft sm:px-6 sm:text-[12px] lg:px-10">
-        <p data-mast-side data-reveal className="min-w-0 truncate">
+      <div className="mx-auto flex max-w-page flex-wrap items-center justify-between gap-x-4 gap-y-0.5 px-4 py-3 font-sans text-[11px] text-ink-soft sm:px-6 sm:text-[12px] lg:px-10">
+        <p data-mast-side data-reveal className="min-w-0 max-w-full truncate">
           <span className="font-semibold uppercase tracking-[0.08em] text-ink sm:tracking-[0.12em]">{SITE.location}</span>
           <span aria-hidden className="mx-2">·</span>
           <Dateline initial={dateline} />
@@ -90,7 +91,10 @@ export function Masthead({ dateline }: { dateline: string }) {
             <InstagramIcon className="text-[16px]" />
             <span>{SITE.instagramHandle}</span>
           </a>
+          <span aria-hidden className="h-4 w-px bg-rule" />
+          <BuiltByLink />
         </div>
+        <BuiltByLink className="md:hidden" />
       </div>
 
       <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-10">

@@ -9,6 +9,7 @@ import { cx } from "@/components/ui/cx";
 import { NAV, SECTIONS, SITE } from "@/lib/site";
 import { gsap, ScrollTrigger, D, E, MQ, useGSAP } from "@/lib/motion";
 import { CloseIcon, InstagramIcon, MenuIcon, SearchIcon } from "./icons";
+import { BuiltByLink } from "./BuiltBy";
 import { lockScroll } from "./SiteMotion";
 
 function isActive(pathname: string, href: string) {
@@ -249,6 +250,7 @@ export function NavBar() {
               <SearchIcon />
             </button>
           </Form>
+          <BuiltByLink data-menu-fade tone="paper" className="mt-6 self-start" />
         </div>
       </dialog>
     </>

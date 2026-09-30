@@ -17,9 +17,9 @@ export const field = {
   hint: "mt-1 font-sans text-[13px] leading-snug text-ink-soft",
   error: "mt-1 font-sans text-[13px] font-semibold leading-snug text-ink",
   input:
-    "mt-1.5 block w-full border border-rule bg-cream px-3 py-2 font-sans text-[15px] text-ink placeholder:text-ink-soft/70 transition-colors hover:border-ink-soft focus:border-navy aria-[invalid=true]:border-ink aria-[invalid=true]:border-l-4 disabled:opacity-60",
+    "mt-1.5 block w-full border border-rule bg-cream px-3 py-2 font-sans text-[16px] md:text-[15px] text-ink placeholder:text-ink-soft/70 transition-colors hover:border-ink-soft focus:border-navy aria-[invalid=true]:border-ink aria-[invalid=true]:border-l-4 disabled:opacity-60",
   select:
-    "mt-1.5 block w-full border border-rule bg-cream px-3 py-2 font-sans text-[15px] text-ink transition-colors hover:border-ink-soft focus:border-navy",
+    "mt-1.5 block w-full border border-rule bg-cream px-3 py-2 font-sans text-[16px] md:text-[15px] text-ink transition-colors hover:border-ink-soft focus:border-navy",
 };
 
 export function PageHeader({
