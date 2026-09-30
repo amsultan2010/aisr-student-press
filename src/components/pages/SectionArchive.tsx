@@ -1,7 +1,8 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { D, E, Flip, MQ } from "@/lib/motion";
+import { D, E, MQ } from "@/lib/motion";
+import { Flip } from "@/lib/motion-flip";
 import { buttonClass } from "@/components/ui/Button";
 import { cx } from "@/components/ui/cx";
 

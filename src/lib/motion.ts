@@ -4,20 +4,15 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { Flip } from "gsap/Flip";
-import { Observer } from "gsap/Observer";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-import { CustomEase } from "gsap/CustomEase";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, SplitText, Flip, Observer, DrawSVGPlugin, CustomEase, useGSAP);
+gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, useGSAP);
 
-// Signature eases, used everywhere by name.
-CustomEase.create("press", "0.16, 1, 0.3, 1");
-CustomEase.create("pressInOut", "0.65, 0, 0.35, 1");
-
+// Signature eases, used everywhere by name. Built-in curves keep the bundle
+// small: expo.out is the site's primary, power3.inOut is for reversible states.
 export const D = { fast: 0.35, base: 0.7, slow: 1.1, epic: 1.6 } as const;
-export const E = { out: "press", inOut: "pressInOut", pop: "back.out(1.7)" } as const;
+export const E = { out: "expo.out", inOut: "power3.inOut", pop: "back.out(1.7)" } as const;
 
 gsap.defaults({ ease: E.out, duration: D.base });
 
@@ -29,4 +24,4 @@ export const MQ = {
   pointer: "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
 } as const;
 
-export { gsap, ScrollTrigger, SplitText, Flip, Observer, DrawSVGPlugin, useGSAP };
+export { gsap, ScrollTrigger, SplitText, DrawSVGPlugin, useGSAP };
