@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Arrow } from "@/components/ui/Arrow";
 import { Mark } from "@/components/ui/Mark";
 import { SECTIONS, SITE } from "@/lib/site";
 import { InstagramIcon } from "./icons";
@@ -124,18 +125,26 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="bg-ink">
-        <div className="mx-auto max-w-page px-4 py-3 font-sans text-[11.5px] sm:px-6 lg:px-10">
-          <a
-            href={SITE.builtBy.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-paper/85 underline decoration-paper/25 underline-offset-4 transition-colors hover:text-paper hover:decoration-gold-soft active:text-gold-soft"
-          >
-            Built by {SITE.builtBy.name}
-          </a>
-        </div>
-      </div>
+      <a
+        href={SITE.builtBy.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor="Visit"
+        className="group block bg-gold text-navy-deep transition-colors duration-300 hover:bg-gold-soft active:bg-paper"
+      >
+        <span className="mx-auto flex max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-5 sm:px-6 lg:px-10">
+          <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em]">Website designed and built by</span>
+          <span className="flex items-center gap-3">
+            <span className="font-serif text-[1.5rem] italic leading-none tracking-[-0.01em] md:text-[1.75rem]">
+              {SITE.builtBy.name}
+            </span>
+            <span className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.14em] sm:inline">
+              amsultan.site
+            </span>
+            <Arrow className="text-[1.1rem]" />
+          </span>
+        </span>
+      </a>
     </footer>
   );
 }
