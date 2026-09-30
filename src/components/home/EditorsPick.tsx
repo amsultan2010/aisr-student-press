@@ -28,7 +28,7 @@ export function EditorsPick({ article }: { article: Card }) {
         const split = SplitText.create(heading, { type: "words", mask: "words" });
         const tl = gsap.timeline({ paused: true, defaults: { ease: "none" } });
         tl.fromTo("[data-pick-media]", { clipPath: "inset(16% 31% 20% 31%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: E.inOut }, 0)
-          .fromTo("[data-pick-img]", { scale: 1.3 }, { scale: 1, duration: 1.2, ease: E.out }, 0)
+          .fromTo("[data-pick-img]", { scale: 1.08 }, { scale: 1, duration: 1.2, ease: E.out }, 0)
           .fromTo("[data-pick-outline]", { xPercent: 8 }, { xPercent: -42, duration: 1.6 }, 0)
           .fromTo("[data-pick-scrim]", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0.45)
           .from(split.words, { yPercent: 115, duration: 0.5, stagger: 0.035, ease: E.out }, 0.7)
@@ -52,7 +52,7 @@ export function EditorsPick({ article }: { article: Card }) {
         const split = SplitText.create(heading, { type: "words", mask: "words" });
         const st = { trigger: stage, start: "top 70%", once: true };
         gsap.fromTo("[data-pick-media]", { clipPath: "inset(10% 10% 10% 10%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: D.slow, ease: E.inOut, scrollTrigger: st });
-        gsap.from("[data-pick-img]", { scale: 1.2, duration: D.epic, scrollTrigger: st });
+        gsap.from("[data-pick-img]", { scale: 1.08, duration: D.epic, scrollTrigger: st });
         gsap.from(split.words, { yPercent: 115, duration: D.base, stagger: 0.03, scrollTrigger: { trigger: heading, start: "top 90%", once: true } });
         gsap.from("[data-pick-fade]", { autoAlpha: 0, y: 16, duration: D.base, stagger: 0.08, scrollTrigger: { trigger: heading, start: "top 90%", once: true } });
         return () => split.revert();
@@ -89,7 +89,7 @@ export function EditorsPick({ article }: { article: Card }) {
         </p>
 
         <div data-pick-media className="absolute inset-0 overflow-hidden">
-          <div data-pick-img className="absolute -inset-[3%]">
+          <div data-pick-img className="absolute -inset-[2%]">
             {article.cover_url && (
               <Image src={article.cover_url} alt={article.cover_alt} fill sizes="100vw" className="object-cover" />
             )}

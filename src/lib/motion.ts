@@ -30,3 +30,6 @@ export const MQ = {
 } as const;
 
 export { gsap, ScrollTrigger, SplitText, Flip, Observer, DrawSVGPlugin, useGSAP };
+
+// QA-TEMP
+if (process.env.NODE_ENV === "development" && typeof window !== "undefined") Object.assign(window, { gsap, ScrollTrigger });

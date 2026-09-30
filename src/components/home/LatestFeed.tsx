@@ -1,8 +1,8 @@
 import type { ArticleCard as Card } from "@/lib/data";
 import { ArticleCard, SectionHeading } from "@/components/ui";
 
-// "Latest stories": one wide feature, two tall cards, then a ruled row of
-// compact items. Every item carries date, authors and read time.
+// "Latest stories": one wide feature, two tall cards, then a ruled two-column
+// block of compact items. Every item carries date, authors and read time.
 export function LatestFeed({ items }: { items: Card[] }) {
   const [first, second, third, ...rest] = items;
   if (!first) return null;
@@ -26,7 +26,7 @@ export function LatestFeed({ items }: { items: Card[] }) {
       {rest.length > 0 && (
         <div className="mt-14">
           <span data-rule aria-hidden className="block h-px bg-ink" />
-          <div className="grid gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:[&>*]:px-6 lg:[&>*:first-child]:pl-0 lg:[&>*:last-child]:pr-0 lg:[&>*+*]:border-l lg:[&>*+*]:border-rule">
+          <div className="grid gap-8 pt-8 sm:grid-cols-2 [&>*]:min-w-0 lg:gap-x-0 lg:[&>*:nth-child(odd)]:pr-10 lg:[&>*:nth-child(even)]:border-l lg:[&>*:nth-child(even)]:border-rule lg:[&>*:nth-child(even)]:pl-10">
             {rest.slice(0, 4).map((a) => (
               <ArticleCard key={a.id} article={a} variant="compact" />
             ))}

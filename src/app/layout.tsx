@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Libre_Franklin } from "next/font/google";
-import Script from "next/script";
+import { MotionBoot } from "@/components/site/MotionBoot";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -41,9 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${newsreader.variable} ${franklin.variable}`} suppressHydrationWarning>
       <body>
-        <Script id="motion-boot" strategy="beforeInteractive">
-          {motionBoot}
-        </Script>
+        <MotionBoot code={motionBoot} />
         {children}
       </body>
     </html>

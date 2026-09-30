@@ -105,7 +105,7 @@ export function Masthead({ dateline }: { dateline: string }) {
             <span
               data-nameplate
               data-reveal
-              className="block font-serif text-[13.4vw] font-medium leading-[0.94] tracking-[-0.035em] text-ink md:whitespace-nowrap md:text-[clamp(3.25rem,6.1vw,6.1rem)]"
+              className="block font-serif text-[13.4vw] font-medium leading-[0.94] tracking-[-0.035em] text-ink md:whitespace-nowrap md:text-[clamp(3.25rem,6.1vw,6.1rem)] xl:text-[clamp(3.25rem,5.5vw,5rem)]"
             >
               <span className="block md:inline">
                 <em className="font-normal">The</em> AISR
@@ -116,12 +116,15 @@ export function Masthead({ dateline }: { dateline: string }) {
             <span data-mast-gold aria-hidden className="mx-auto mt-3 block h-[3px] w-24 bg-gold md:mt-4 md:w-40" />
           </Link>
 
+          {/* Below xl the side columns are too narrow for it, so the tagline sits
+              centred under the nameplate; from xl it is the right-hand ear. */}
           <p
             data-mast-side
             data-reveal
-            className="mt-4 text-center font-serif text-[15px] italic leading-snug text-balance text-ink-soft md:mt-0 md:max-w-[16.5rem] md:justify-self-end md:text-right md:text-[16px]"
+            className="mt-4 text-center font-serif text-[15px] italic leading-snug text-balance text-ink-soft md:col-span-3 md:mt-5 md:text-[16px] xl:col-span-1 xl:mt-0 xl:justify-self-end xl:text-right"
           >
-            The student newspaper of the American International School of Riyadh
+            <span className="xl:block">The student newspaper</span> <span className="xl:block">of the American International</span>{" "}
+            <span className="xl:block">School of Riyadh</span>
           </p>
         </div>
         <span data-mast-rule aria-hidden className="block h-[3px] bg-ink" />

@@ -15,6 +15,11 @@ export function MotionScope({ children, className }: { children: React.ReactNode
       const root = ref.current;
       if (!root) return;
       const all = (kind: string) => gsap.utils.toArray<HTMLElement>(`[data-reveal="${kind}"]`, root);
+      // Only tween kinds present on the page; GSAP warns about empty targets.
+      const each = (kind: string, run: (targets: HTMLElement[]) => void) => {
+        const targets = all(kind);
+        if (targets.length) run(targets);
+      };
       const mm = gsap.matchMedia();
 
       mm.add({ desktop: MQ.desktop, mobile: MQ.mobile, reduced: MQ.reduced }, (ctx) => {
@@ -44,29 +49,35 @@ export function MotionScope({ children, className }: { children: React.ReactNode
           });
         });
 
-        gsap.from(all("rule"), {
-          scaleX: 0,
-          transformOrigin: "left center",
-          duration: D.slow,
-          ease: E.inOut,
-          delay: 0.15,
-        });
+        each("rule", (t) =>
+          gsap.from(t, {
+            scaleX: 0,
+            transformOrigin: "left center",
+            duration: D.slow,
+            ease: E.inOut,
+            delay: 0.15,
+          }),
+        );
 
-        gsap.from(all("seal"), { rotate: -25, scale: 0.8, autoAlpha: 0, duration: D.slow, ease: E.out });
+        each("seal", (t) => gsap.from(t, { rotate: -25, scale: 0.8, autoAlpha: 0, duration: D.slow, ease: E.out }));
 
-        gsap.from(all("up"), {
-          y: 18 * travel,
-          autoAlpha: 0,
-          duration: D.base,
-          stagger: 0.06,
-          delay: 0.2,
-        });
+        each("up", (t) =>
+          gsap.from(t, {
+            y: 18 * travel,
+            autoAlpha: 0,
+            duration: D.base,
+            stagger: 0.06,
+            delay: 0.2,
+          }),
+        );
 
         // Explicit end value: clip-path cannot interpolate towards "none".
-        gsap.fromTo(
-          all("clip"),
-          { clipPath: "inset(0% 100% 0% 0%)" },
-          { clipPath: "inset(0% 0% 0% 0%)", duration: D.epic, ease: E.inOut, delay: 0.2 },
+        each("clip", (t) =>
+          gsap.fromTo(
+            t,
+            { clipPath: "inset(0% 100% 0% 0%)" },
+            { clipPath: "inset(0% 0% 0% 0%)", duration: D.epic, ease: E.inOut, delay: 0.2 },
+          ),
         );
 
         all("count").forEach((el) => {
